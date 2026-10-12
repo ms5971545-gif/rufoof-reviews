@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>آراء عملاء رُفوف</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f8f5ed;color:#263d2e;font-family:Tahoma,Arial,sans-serif}
+#rufoof{max-width:1150px;margin:auto;padding:25px 12px}
+.heading{text-align:center;margin-bottom:25px}
+.kicker{color:#a08040;font-size:12px;font-weight:bold;margin-bottom:9px}
+h2{font-size:clamp(23px,4vw,32px);margin:0 0 10px;line-height:1.6}
+.subtitle{font-size:13px;color:#777060;line-height:2;margin:0}
+.overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:12px;margin-bottom:28px}
+.panel{background:#fff;border:1px solid #e8e0d1;border-radius:14px;padding:18px 12px;min-width:0}
+.score{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.label,.total{color:#777060;font-size:12px;line-height:1.9}
+.number{font-size:42px;font-weight:bold;line-height:1.4}
+.stars{color:#b18b43;font-size:17px;margin:5px 0}
+.dist-title{font-size:13px;font-weight:bold;margin-bottom:14px}
+.row{display:grid;grid-template-columns:42px minmax(10px,1fr) 20px;gap:5px;align-items:center;margin:12px 0;font-size:10px;color:#716b5e}
+.track{height:7px;background:#eee9df;border-radius:20px;overflow:hidden}
+.fill{height:100%;background:#b18b43;width:0}
+.count{text-align:left;direction:ltr}
+.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px;padding-bottom:12px;border-bottom:1px solid #e8e0d1}
+h3{font-size:19px;margin:0}
+.latest{font-size:11px;color:#a08040;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.card{background:#fff;border:1px solid #e8e0d1;border-radius:13px;padding:13px 11px;min-width:0;height:auto;overflow:visible;box-shadow:0 4px 14px rgba(38,61,46,.04)}
+.person{display:flex;align-items:center;gap:8px;margin-bottom:9px;min-width:0}
+.avatar{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#263d2e;color:#f8f5ed;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold}
+.person-info{min-width:0}
+.name{font-size:12px;font-weight:bold;line-height:1.8;overflow-wrap:anywhere}
+.date{font-size:10px;color:#938b7b;line-height:1.8}
+.card-stars{font-size:13px;color:#b18b43;margin-bottom:8px;line-height:1.8}
+.comment{font-size:12px;color:#5f5a4e;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;display:block;height:auto;max-height:none;overflow:visible;text-overflow:clip;-webkit-line-clamp:unset;line-clamp:unset}
+.status{text-align:center;padding:20px 8px;font-size:13px;color:#777060;line-height:2}
+.footer{text-align:center;margin-top:24px;font-size:12px;color:#8a806e;line-height:2}
+.footer span{color:#a08040}
+@media(min-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}}
+@media(max-width:380px){#rufoof{padding:22px 7px}.overview{gap:7px}.panel{padding:13px 7px}.number{font-size:34px}.stars{font-size:14px}.row{grid-template-columns:38px minmax(8px,1fr) 17px;gap:3px;font-size:9px}.grid{gap:8px}.card{padding:10px 8px}.name{font-size:11px}.comment{font-size:11px}.card-stars{font-size:11px}}
+</style>
+</head>
+<body>
+<main id="rufoof">
+  <header class="heading">
+    <div class="kicker">RUFOOF · آراء عملائنا</div>
+    <h2>ثقتكم هي أجمل شهادة</h2>
+    <p class="subtitle">آراء وتجارب عملائنا مع رُفوف، نعتز بكل كلمة منكم.</p>
+  </header>
+
+  <section class="overview">
+    <div class="panel score">
+      <div class="label">متوسط تقييم العملاء</div>
+      <div class="number" id="average">—</div>
+      <div class="stars" id="averageStars">☆☆☆☆☆</div>
+      <div class="total" id="total">جاري تحميل الآراء...</div>
+    </div>
+    <div class="panel">
+      <div class="dist-title">توزيع التقييمات</div>
+      <div id="distribution"><div class="status">جاري التحميل...</div></div>
+    </div>
+  </section>
+
+  <div class="list-heading">
+    <h3>ماذا قال عملاؤنا؟</h3>
+    <div class="latest">الأحدث أولًا</div>
+  </div>
+  <section class="grid" id="reviews"></section>
+  <div class="status" id="status"></div>
+  <div class="footer"><span>✦</span> شكرًا لثقتكم في رُفوف <span>✦</span></div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+(function(){
+  var config={
+    apiKey:"AIzaSyDVigJ8j77CaBL_kecRhjof2eRwrjFhlC4",
+    authDomain:"rufoof-5274f.firebaseapp.com",
+    projectId:"rufoof-5274f",
+    storageBucket:"rufoof-5274f.firebasestorage.app",
+    messagingSenderId:"649838866242",
+    appId:"1:649838866242:web:a2599e88269e7c656262db"
+  };
+
+  function make(tag,cls,value){
+    var n=document.createElement(tag);
+    if(cls)n.className=cls;
+    if(value!==undefined)n.textContent=value;
+    return n;
+  }
+
+  function drawDistribution(reviews){
+    var target=document.getElementById("distribution");
+    target.replaceChildren();
+    for(var rating=5;rating>=1;rating--){
+      var count=reviews.filter(function(r){return r.rating===rating}).length;
+      var row=make("div","row");
+      var track=make("div","track");
+      var fill=make("div","fill");
+      fill.style.width=reviews.length?(count/reviews.length*100)+"%":"0%";
+      track.appendChild(fill);
+      row.append(make("div","",rating+" نجوم"),track,make("div","count",count));
+      target.appendChild(row);
+    }
+  }
+
+  function drawReviews(reviews){
+    var target=document.getElementById("reviews");
+    target.replaceChildren();
+    reviews.forEach(function(r){
+      var card=make("article","card");
+      var person=make("div","person");
+      var avatar=make("div","avatar",r.name.trim().charAt(0)||"ر");
+      var info=make("div","person-info");
+      info.append(
+        make("div","name",r.name),
+        make("div","date",r.createdAt.toDate().toLocaleDateString("ar-EG"))
+      );
+      person.append(avatar,info);
+      var stars=make("div","card-stars","★".repeat(r.rating)+"☆".repeat(5-r.rating));
+      var comment=make("div","comment",r.comment);
+      card.append(person,stars,comment);
+      target.appendChild(card);
+    });
+  }
+
+  try{
+    if(!window.firebase)throw new Error("Firebase unavailable");
+    if(!firebase.apps.length)firebase.initializeApp(config);
+    firebase.firestore().collection("reviews")
+      .orderBy("createdAt","desc")
+      .onSnapshot(function(snapshot){
+        var reviews=[];
+        snapshot.forEach(function(doc){
+          var r=doc.data();
+          if(typeof r.name==="string"&&r.name.trim().length>=2&&
+             typeof r.comment==="string"&&Number.isInteger(r.rating)&&
+             r.rating>=1&&r.rating<=5&&r.createdAt&&
+             typeof r.createdAt.toDate==="function"){
+            reviews.push(r);
+          }
+        });
+
+        if(!reviews.length){
+          document.getElementById("average").textContent="—";
+          document.getElementById("averageStars").textContent="☆☆☆☆☆";
+          document.getElementById("total").textContent="لا توجد تقييمات منشورة";
+          drawDistribution([]);
+          document.getElementById("reviews").replaceChildren();
+          document.getElementById("status").textContent="";
+          return;
+        }
+
+        var sum=reviews.reduce(function(n,r){return n+r.rating},0);
+        var avg=sum/reviews.length;
+        document.getElementById("average").textContent=avg.toFixed(1);
+        document.getElementById("averageStars").textContent=
+          "★".repeat(Math.round(avg))+"☆".repeat(5-Math.round(avg));
+        document.getElementById("total").textContent=reviews.length+" تقييم منشور";
+        drawDistribution(reviews);
+        drawReviews(reviews);
+        document.getElementById("status").textContent="";
+      },function(error){
+        document.getElementById("total").textContent="تعذر تحميل التقييمات";
+        document.getElementById("status").textContent=
+          "راجع إعدادات Firebase واتصال الإنترنت.";
+        console.error(error);
+      });
+  }catch(error){
+    document.getElementById("total").textContent="تعذر تشغيل التقييمات";
+    document.getElementById("status").textContent="تعذر تشغيل عرض الآراء.";
+    console.error(error);
+  }
+})();
+</script>
+</body>
+</html>

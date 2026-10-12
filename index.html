@@ -1,0 +1,699 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#203d32">
+<title>آراء القرّاء | رُفوف</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green: #203d32;
+  --green-light: #315744;
+  --gold: #aa8a4d;
+  --gold-light: #d5c49c;
+  --paper: #f8f6f0;
+  --white: #fffefa;
+  --ink: #292d27;
+  --muted: #77796f;
+  --line: #e7e1d4;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Tajawal", Tahoma, Arial, sans-serif;
+  line-height: 1.8;
+}
+button, input, textarea { font: inherit; }
+.top-line {
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), var(--green), var(--gold));
+}
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1080px;
+  margin: auto;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: var(--green);
+}
+.brand-mark {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 700 27px "Amiri", serif;
+  color: var(--gold);
+}
+.brand-name {
+  display: block;
+  font: 700 29px "Amiri", serif;
+  line-height: 1.2;
+}
+.brand-tagline {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.header-label {
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 6px 13px;
+  color: var(--green);
+  background: var(--paper);
+  font-size: 12px;
+}
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--green);
+  color: white;
+  text-align: center;
+  padding: 52px 18px 61px;
+}
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(255,255,255,.11);
+  border-radius: 50%;
+}
+.hero::before { top: -120px; right: -45px; }
+.hero::after { bottom: -130px; left: -30px; }
+.hero-inner {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+}
+.eyebrow {
+  color: var(--gold-light);
+  font-size: 13px;
+  font-weight: 700;
+}
+h1 {
+  font: 700 clamp(34px,5vw,49px)/1.45 "Amiri", serif;
+  margin: 5px 0;
+}
+.hero p {
+  color: #e0e7df;
+  font-size: 15px;
+  margin: 5px auto 0;
+  max-width: 570px;
+}
+.ornament {
+  font: 24px "Amiri", serif;
+  color: var(--gold-light);
+  margin-top: 12px;
+}
+main {
+  width: min(1050px,calc(100% - 30px));
+  margin: -24px auto 0;
+  position: relative;
+  padding-bottom: 55px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 1px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--line);
+  box-shadow: 0 12px 35px rgba(32,61,50,.05);
+}
+.stat {
+  background: var(--white);
+  text-align: center;
+  padding: 18px 8px;
+}
+.stat strong {
+  display: block;
+  color: var(--green);
+  font-size: 25px;
+  line-height: 1.4;
+}
+.stat span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+}
+.gold-stars {
+  color: var(--gold) !important;
+  direction: ltr;
+  letter-spacing: 2px;
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 340px;
+  gap: 23px;
+  margin-top: 32px;
+  align-items: start;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+h2 {
+  font: 700 27px "Amiri", serif;
+  color: var(--green);
+  margin: 0;
+}
+.section-heading small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.reviews-list {
+  display: grid;
+  gap: 13px;
+}
+.review-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 19px 20px;
+  overflow-wrap: anywhere;
+}
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+.avatar {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #e9eee6;
+  color: var(--green);
+  font: 700 22px "Amiri", serif;
+}
+.review-name {
+  font-weight: 800;
+  color: var(--green);
+  font-size: 14px;
+}
+.review-date {
+  font-size: 11px;
+  color: var(--muted);
+}
+.review-stars {
+  margin-right: auto;
+  color: var(--gold);
+  direction: ltr;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.review-comment {
+  white-space: pre-wrap;
+  margin: 12px 0 0;
+  color: #51544d;
+  font-size: 14px;
+  line-height: 2;
+}
+.empty-state {
+  padding: 30px 18px;
+  text-align: center;
+  color: var(--muted);
+  background: var(--white);
+  border: 1px dashed #d9d1c1;
+  border-radius: 12px;
+}
+.empty-state strong {
+  display: block;
+  color: var(--green);
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.empty-symbol {
+  font: 30px "Amiri", serif;
+  color: var(--gold);
+}
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 23px;
+  box-shadow: 0 12px 35px rgba(32,61,50,.05);
+}
+.form-card h2 { font-size: 27px; }
+.form-intro {
+  font-size: 13px;
+  color: var(--muted);
+  margin: 4px 0 13px;
+}
+.gold-divider {
+  width: 45px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 17px;
+}
+.field { margin-bottom: 14px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.field input, .field textarea {
+  width: 100%;
+  border: 1px solid #e1ddd2;
+  border-radius: 8px;
+  padding: 11px 12px;
+  background: #fdfcf8;
+  color: var(--ink);
+  outline: none;
+  font-size: 14px;
+}
+.field input:focus, .field textarea:focus {
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 3px rgba(49,87,68,.08);
+}
+.field textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+.rating-picker {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 6px;
+  direction: ltr;
+}
+.rating-picker button {
+  border: 0;
+  background: transparent;
+  color: #d6d1c5;
+  font-size: 31px;
+  padding: 0 2px;
+  line-height: 1.35;
+  cursor: pointer;
+}
+.rating-picker button.active,
+.rating-picker button.active ~ button {
+  color: var(--gold);
+}
+.rating-help {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.submit-btn {
+  width: 100%;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  background: var(--green);
+  color: white;
+  padding: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.submit-btn:hover { background: var(--green-light); }
+.submit-btn:disabled { opacity: .65; cursor: wait; }
+.form-message {
+  display: none;
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.form-message.success {
+  display: block;
+  background: #edf4e9;
+  color: #27553a;
+  border: 1px solid #d5e5d0;
+}
+.form-message.error {
+  display: block;
+  background: #fff0ed;
+  color: #a63b35;
+  border: 1px solid #f1d4ce;
+}
+.privacy-note {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  margin: 12px 0 0;
+}
+footer {
+  background: #192f27;
+  color: #e4e8e0;
+  text-align: center;
+  padding: 24px 15px;
+}
+footer strong {
+  font: 700 25px "Amiri",serif;
+  color: var(--gold-light);
+}
+footer p { margin: 3px 0; font-size: 12px; }
+@media(max-width:780px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .form-card { grid-row: 1; }
+  .reviews-section { grid-row: 2; }
+}
+@media(max-width:480px) {
+  .header-inner { padding: 13px; }
+  .brand-name { font-size: 25px; }
+  .brand-mark { width: 40px; height: 40px; }
+  .hero { padding: 43px 16px 53px; }
+  .hero p { font-size: 14px; }
+  .stat { padding: 15px 4px; }
+  .stat strong { font-size: 22px; }
+  .stat span { font-size: 10px; }
+  .content-grid { margin-top: 24px; gap: 22px; }
+  .form-card { padding: 19px; }
+  .review-card { padding: 16px; }
+  .review-stars { font-size: 12px; letter-spacing: 0; }
+}
+</style>
+</head>
+<body>
+<div class="top-line"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <span class="brand-mark">ر</span>
+      <span>
+        <span class="brand-name">رُفوف</span>
+        <span class="brand-tagline">نختار ما ينفع، ونيسّر وصوله إليكم.</span>
+      </span>
+    </div>
+    <span class="header-label">آراء القرّاء</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">من القلب إلى رُفوف</div>
+    <h1>كلمة طيبة من قرّائنا</h1>
+    <p>رأيكم يهمّنا، وتجربتكم تساعدنا على تقديم ما ينفع ويستحق أن يكون على رفوفكم. شاركونا انطباعكم بكل صدق.</p>
+    <div class="ornament" aria-hidden="true">❦</div>
+  </div>
+</section>
+
+<main>
+  <section class="stats">
+    <div class="stat">
+      <strong id="averageRating">—</strong>
+      <span>متوسط التقييم</span>
+    </div>
+    <div class="stat">
+      <strong class="gold-stars" id="averageStars">☆☆☆☆☆</strong>
+      <span>تقييمات القرّاء</span>
+    </div>
+    <div class="stat">
+      <strong id="reviewCount">0</strong>
+      <span>رأي من مجتمع رُفوف</span>
+    </div>
+  </section>
+
+  <div class="content-grid">
+    <section class="reviews-section">
+      <div class="section-heading">
+        <h2>ماذا قالوا عن رُفوف؟</h2>
+        <small>آراء القرّاء وتجاربهم</small>
+      </div>
+      <div class="reviews-list" id="reviewsList">
+        <div class="empty-state">جارٍ تحميل آراء القرّاء...</div>
+      </div>
+    </section>
+
+    <aside class="form-card">
+      <h2>شاركنا رأيك</h2>
+      <p class="form-intro">يسعدنا أن نعرف كيف كانت تجربتك مع رُفوف.</p>
+      <div class="gold-divider"></div>
+
+      <form id="reviewForm">
+        <div class="field">
+          <label for="reviewName">الاسم</label>
+          <input id="reviewName" type="text" minlength="2" maxlength="60"
+            placeholder="اكتب اسمك" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label>تقييمك لرُفوف</label>
+          <div class="rating-picker" id="ratingPicker">
+            <button type="button" data-rating="5" aria-label="5 نجوم">★</button>
+            <button type="button" data-rating="4" aria-label="4 نجوم">★</button>
+            <button type="button" data-rating="3" aria-label="3 نجوم">★</button>
+            <button type="button" data-rating="2" aria-label="نجمتان">★</button>
+            <button type="button" data-rating="1" aria-label="نجمة واحدة">★</button>
+          </div>
+          <div class="rating-help" id="ratingHelp">اختر عدد النجوم من 1 إلى 5</div>
+        </div>
+
+        <div class="field">
+          <label for="reviewComment">اكتب رأيك</label>
+          <textarea id="reviewComment" maxlength="1000"
+            placeholder="كيف كانت تجربتك؟ رأيك يهمنا..." required></textarea>
+        </div>
+
+        <button class="submit-btn" id="submitBtn" type="submit">نشر التقييم</button>
+        <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+      </form>
+
+      <p class="privacy-note">✦ يظهر تقييمك للزوار فور إرساله بنجاح.</p>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <strong>رُفوف</strong>
+  <p>نختار ما ينفع، ونيسّر وصوله إليكم.</p>
+  <p>مساحة تجمعنا حول الكلمة الطيبة والمعرفة النافعة.</p>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDVigJ8j77CaBL_kecRhjof2eRwrjFhlC4",
+  authDomain: "rufoof-5274f.firebaseapp.com",
+  projectId: "rufoof-5274f",
+  storageBucket: "rufoof-5274f.firebasestorage.app",
+  messagingSenderId: "649838866242",
+  appId: "1:649838866242:web:a2599e88269e7c656262db"
+};
+
+const reviewsList = document.getElementById("reviewsList");
+const reviewForm = document.getElementById("reviewForm");
+const submitBtn = document.getElementById("submitBtn");
+const formMessage = document.getElementById("formMessage");
+const ratingHelp = document.getElementById("ratingHelp");
+const ratingButtons = Array.from(document.querySelectorAll("#ratingPicker button"));
+
+let selectedRating = 0;
+let db = null;
+
+const ratingLabels = {
+  1: "لم تعجبني التجربة",
+  2: "التجربة تحتاج إلى تحسين",
+  3: "تجربة جيدة",
+  4: "تجربة مميزة",
+  5: "تجربة رائعة"
+};
+
+ratingButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    selectedRating = Number(button.dataset.rating);
+    ratingButtons.forEach(star => {
+      star.classList.toggle("active", Number(star.dataset.rating) <= selectedRating);
+    });
+    ratingHelp.textContent = ratingLabels[selectedRating];
+  });
+});
+
+function showMessage(text, type) {
+  formMessage.textContent = text;
+  formMessage.className = "form-message " + type;
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;"
+  }[char]));
+}
+
+function formatDate(timestamp) {
+  if (!timestamp || typeof timestamp.toDate !== "function") {
+    return "من مجتمع رُفوف";
+  }
+  return new Intl.DateTimeFormat("ar-EG", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  }).format(timestamp.toDate());
+}
+
+function renderReviews(documents) {
+  const reviews = documents.map(doc => doc.data()).filter(review =>
+    typeof review.name === "string" &&
+    typeof review.comment === "string" &&
+    Number.isInteger(review.rating) &&
+    review.rating >= 1 &&
+    review.rating <= 5
+  );
+
+  const count = reviews.length;
+  const average = count
+    ? reviews.reduce((sum, review) => sum + review.rating, 0) / count
+    : 0;
+
+  document.getElementById("reviewCount").textContent = count.toLocaleString("ar-EG");
+  document.getElementById("averageRating").textContent =
+    count ? average.toFixed(1).replace(".", "٫") : "—";
+  document.getElementById("averageStars").textContent = count
+    ? "★".repeat(Math.round(average)) + "☆".repeat(5 - Math.round(average))
+    : "☆☆☆☆☆";
+
+  if (!count) {
+    reviewsList.innerHTML = `
+      <div class="empty-state">
+        <div class="empty-symbol">❦</div>
+        <strong>كن أول من يشارك رأيه</strong>
+        لم تصلنا تقييمات بعد. يسعدنا أن تكون تجربتك أول حكاية على رُفوف.
+      </div>`;
+    return;
+  }
+
+  reviewsList.innerHTML = reviews.map(review => {
+    const rating = Math.max(1, Math.min(5, review.rating));
+    const name = escapeHTML(review.name.trim());
+    const comment = escapeHTML(review.comment.trim());
+    const initial = escapeHTML(review.name.trim().charAt(0) || "ر");
+
+    return `
+      <article class="review-card">
+        <div class="review-top">
+          <div class="avatar">${initial}</div>
+          <div>
+            <div class="review-name">${name}</div>
+            <div class="review-date">${escapeHTML(formatDate(review.createdAt))}</div>
+          </div>
+          <div class="review-stars" aria-label="${rating} من 5">
+            ${"★".repeat(rating)}${"☆".repeat(5 - rating)}
+          </div>
+        </div>
+        <p class="review-comment">${comment}</p>
+      </article>`;
+  }).join("");
+}
+
+function startReviews() {
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    db = firebase.firestore();
+
+    db.collection("reviews")
+      .orderBy("createdAt", "desc")
+      .limit(100)
+      .onSnapshot(snapshot => {
+        renderReviews(snapshot.docs);
+      }, error => {
+        console.error("Firebase read error:", error);
+        reviewsList.innerHTML = `
+          <div class="empty-state">
+            <strong>تعذّر تحميل التقييمات</strong>
+            تحقق من اتصال الإنترنت وإعدادات Firestore.
+          </div>`;
+      });
+  } catch (error) {
+    console.error("Firebase initialization error:", error);
+    reviewsList.innerHTML = `
+      <div class="empty-state">
+        <strong>تعذّر الاتصال بقاعدة البيانات</strong>
+        راجع إعدادات Firebase وحاول مرة أخرى.
+      </div>`;
+  }
+}
+
+reviewForm.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const name = document.getElementById("reviewName").value.trim();
+  const comment = document.getElementById("reviewComment").value.trim();
+
+  if (name.length < 2 || name.length > 60) {
+    showMessage("اكتب اسمًا من حرفين إلى 60 حرفًا.", "error");
+    return;
+  }
+  if (!selectedRating) {
+    showMessage("اختار عدد النجوم قبل نشر التقييم.", "error");
+    return;
+  }
+  if (!comment) {
+    showMessage("اكتب رأيك قبل نشر التقييم.", "error");
+    return;
+  }
+  if (!db) {
+    showMessage("قاعدة البيانات لم تتصل. أعد تحميل الصفحة وحاول مرة أخرى.", "error");
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "جارٍ نشر تقييمك...";
+  formMessage.className = "form-message";
+
+  try {
+    await db.collection("reviews").add({
+      name: name,
+      rating: selectedRating,
+      comment: comment,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    reviewForm.reset();
+    selectedRating = 0;
+    ratingButtons.forEach(button => button.classList.remove("active"));
+    ratingHelp.textContent = "اختر عدد النجوم من 1 إلى 5";
+    showMessage("شكرًا لمشاركتنا رأيك. تم نشر تقييمك بنجاح.", "success");
+  } catch (error) {
+    console.error("Review submission error:", error);
+    showMessage(
+      error.code === "permission-denied"
+        ? "تعذّر النشر بسبب صلاحيات Firestore. راجع قواعد قاعدة البيانات."
+        : "لم نتمكن من نشر التقييم. تحقق من الإنترنت وحاول مرة أخرى.",
+      "error"
+    );
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "نشر التقييم";
+  }
+});
+
+startReviews();
+</script>
+</body>
+</html>

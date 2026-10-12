@@ -9,7 +9,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;width:100%;background:#f8f5ed;color:#263d2e;font-family:Tahoma,Arial,sans-serif}
 body{overflow-x:hidden}
-#rufoof{width:100%;max-width:1150px;margin:0 auto;padding:20px 12px 0}
+#rufoof{width:100%;max-width:1150px;margin:0 auto;padding:20px 12px 8px}
 .heading{text-align:center;margin-bottom:22px}
 .kicker{color:#a08040;font-size:12px;font-weight:bold;margin-bottom:8px;letter-spacing:1px}
 h2{font-size:clamp(23px,4vw,32px);margin:0 0 8px;line-height:1.6}
@@ -25,11 +25,13 @@ h2{font-size:clamp(23px,4vw,32px);margin:0 0 8px;line-height:1.6}
 .track{height:7px;background:#eee9df;border-radius:20px;overflow:hidden}
 .fill{height:100%;background:#b18b43;width:0}
 .count{text-align:left;direction:ltr}
-.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #e8e0d1}
+.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid #e8e0d1}
 h3{font-size:18px;margin:0}
 .latest{font-size:11px;color:#a08040;white-space:nowrap}
 
-/* التقييمات أفقية قابلة للسحب */
+/* صفان مستقلان للتقييمات */
+.review-row{margin-bottom:18px}
+.row-title{font-size:13px;font-weight:bold;color:#263d2e;margin:0 0 9px}
 .grid{
   display:flex;
   flex-flow:row nowrap;
@@ -67,14 +69,14 @@ h3{font-size:18px;margin:0}
 .card-stars{font-size:14px;color:#b18b43;margin-bottom:7px;line-height:1.8}
 .comment{font-size:12px;color:#5f5a4e;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;display:block;height:auto;max-height:none;overflow:visible}
 .status{text-align:center;padding:12px 8px;font-size:13px;color:#777060;line-height:1.9}
-.footer{text-align:center;margin-top:8px;padding:0 0 2px;font-size:12px;color:#8a806e;line-height:1.8}
+.footer{text-align:center;margin-top:6px;padding:5px 0 2px;font-size:12px;color:#8a806e;line-height:1.8}
 .footer span{color:#a08040}
-.swipe-hint{text-align:center;color:#8a806e;font-size:11px;margin:0 0 7px}
+.swipe-hint{text-align:center;color:#8a806e;font-size:11px;margin:0 0 10px}
 .swipe-hint span{color:#a08040;padding:0 4px}
 @media(min-width:700px){.card{flex-basis:42%;width:42%}}
 @media(min-width:1000px){.card{flex-basis:31%;width:31%}}
 @media(max-width:480px){
-  #rufoof{padding:17px 9px 0}
+  #rufoof{padding:17px 9px 8px}
   .overview{gap:8px;margin-bottom:20px}
   .panel{padding:13px 8px}
   .number{font-size:33px}
@@ -112,9 +114,18 @@ h3{font-size:18px;margin:0}
     <h3>ماذا قال عملاؤنا؟</h3>
     <div class="latest">الأحدث أولًا</div>
   </div>
+  <p class="swipe-hint">اسحب كل صف لاستكشاف المزيد <span>←</span><span>→</span></p>
 
-  <p class="swipe-hint">اسحب لاستكشاف الآراء <span>←</span><span>→</span></p>
-  <section class="grid" id="reviews"></section>
+  <section class="review-row">
+    <h4 class="row-title">آراء عملائنا</h4>
+    <div class="grid" id="reviewsTop"></div>
+  </section>
+
+  <section class="review-row">
+    <h4 class="row-title">المزيد من التجارب</h4>
+    <div class="grid" id="reviewsBottom"></div>
+  </section>
+
   <div class="status" id="status"></div>
   <div class="footer"><span>✦</span> شكرًا لثقتكم في رُفوف <span>✦</span></div>
 </main>
@@ -129,16 +140,14 @@ h3{font-size:18px;margin:0}
     var height=Math.ceil(root.getBoundingClientRect().height);
     parent.postMessage({type:"rufoof-resize",height:height},"*");
   }
-
   function scheduleHeight(){
     requestAnimationFrame(reportHeight);
     setTimeout(reportHeight,100);
     setTimeout(reportHeight,350);
+    setTimeout(reportHeight,800);
   }
-
   window.addEventListener("load",scheduleHeight);
   window.addEventListener("resize",scheduleHeight);
-
   if("ResizeObserver" in window){
     new ResizeObserver(scheduleHeight).observe(document.getElementById("rufoof"));
   }
@@ -174,23 +183,30 @@ h3{font-size:18px;margin:0}
     }
   }
 
+  function drawCard(r){
+    var card=make("article","card");
+    var person=make("div","person");
+    var avatar=make("div","avatar",r.name.trim().charAt(0)||"ر");
+    var info=make("div","person-info");
+    info.append(
+      make("div","name",r.name),
+      make("div","date",r.createdAt.toDate().toLocaleDateString("ar-EG"))
+    );
+    person.append(avatar,info);
+    var stars=make("div","card-stars","★".repeat(r.rating)+"☆".repeat(5-r.rating));
+    var comment=make("div","comment",r.comment);
+    card.append(person,stars,comment);
+    return card;
+  }
+
   function drawReviews(reviews){
-    var target=document.getElementById("reviews");
-    target.replaceChildren();
-    reviews.forEach(function(r){
-      var card=make("article","card");
-      var person=make("div","person");
-      var avatar=make("div","avatar",r.name.trim().charAt(0)||"ر");
-      var info=make("div","person-info");
-      info.append(
-        make("div","name",r.name),
-        make("div","date",r.createdAt.toDate().toLocaleDateString("ar-EG"))
-      );
-      person.append(avatar,info);
-      var stars=make("div","card-stars","★".repeat(r.rating)+"☆".repeat(5-r.rating));
-      var comment=make("div","comment",r.comment);
-      card.append(person,stars,comment);
-      target.appendChild(card);
+    var top=document.getElementById("reviewsTop");
+    var bottom=document.getElementById("reviewsBottom");
+    top.replaceChildren();
+    bottom.replaceChildren();
+
+    reviews.forEach(function(r,index){
+      (index%2===0?top:bottom).appendChild(drawCard(r));
     });
   }
 
@@ -217,7 +233,7 @@ h3{font-size:18px;margin:0}
           document.getElementById("averageStars").textContent="☆☆☆☆☆";
           document.getElementById("total").textContent="لا توجد تقييمات منشورة";
           drawDistribution([]);
-          document.getElementById("reviews").replaceChildren();
+          drawReviews([]);
           document.getElementById("status").textContent="";
           scheduleHeight();
           return;

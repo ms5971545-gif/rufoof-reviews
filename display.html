@@ -4,16 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>آراء عملاء رُفوف</title>
+<title>Rufoof Reviews</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#f8f5ed;color:#263d2e;font-family:Tahoma,Arial,sans-serif}
-#rufoof{max-width:1150px;margin:auto;padding:25px 12px}
-.heading{text-align:center;margin-bottom:25px}
+#rufoof{max-width:1150px;margin:auto;padding:22px 12px}
+.heading{text-align:center;margin-bottom:22px}
 .kicker{color:#a08040;font-size:12px;font-weight:bold;margin-bottom:9px}
 h2{font-size:clamp(23px,4vw,32px);margin:0 0 10px;line-height:1.6}
 .subtitle{font-size:13px;color:#777060;line-height:2;margin:0}
-.overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:12px;margin-bottom:28px}
+.overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:12px;margin-bottom:26px}
 .panel{background:#fff;border:1px solid #e8e0d1;border-radius:14px;padding:18px 12px;min-width:0}
 .score{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .label,.total{color:#777060;font-size:12px;line-height:1.9}
@@ -24,29 +24,77 @@ h2{font-size:clamp(23px,4vw,32px);margin:0 0 10px;line-height:1.6}
 .track{height:7px;background:#eee9df;border-radius:20px;overflow:hidden}
 .fill{height:100%;background:#b18b43;width:0}
 .count{text-align:left;direction:ltr}
-.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:15px;padding-bottom:12px;border-bottom:1px solid #e8e0d1}
+.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #e8e0d1}
 h3{font-size:19px;margin:0}
 .latest{font-size:11px;color:#a08040;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
-.card{background:#fff;border:1px solid #e8e0d1;border-radius:13px;padding:13px 11px;min-width:0;height:auto;overflow:visible;box-shadow:0 4px 14px rgba(38,61,46,.04)}
+
+/* شريط التقييمات الأفقي */
+.reviews-wrap{position:relative}
+.grid{
+  display:flex;
+  flex-flow:row nowrap;
+  gap:12px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:4px 2px 16px;
+  scroll-snap-type:x mandatory;
+  scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#a08040 #e8e0d1;
+}
+.card{
+  flex:0 0 82%;
+  width:82%;
+  min-width:0;
+  align-self:stretch;
+  background:#fff;
+  border:1px solid #e8e0d1;
+  border-radius:13px;
+  padding:14px 12px;
+  height:auto;
+  overflow-wrap:anywhere;
+  box-shadow:0 4px 14px rgba(38,61,46,.05);
+  scroll-snap-align:start;
+}
 .person{display:flex;align-items:center;gap:8px;margin-bottom:9px;min-width:0}
-.avatar{width:34px;height:34px;flex:0 0 34px;border-radius:50%;background:#263d2e;color:#f8f5ed;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold}
+.avatar{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:#263d2e;color:#f8f5ed;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold}
 .person-info{min-width:0}
 .name{font-size:12px;font-weight:bold;line-height:1.8;overflow-wrap:anywhere}
 .date{font-size:10px;color:#938b7b;line-height:1.8}
-.card-stars{font-size:13px;color:#b18b43;margin-bottom:8px;line-height:1.8}
-.comment{font-size:12px;color:#5f5a4e;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;display:block;height:auto;max-height:none;overflow:visible;text-overflow:clip;-webkit-line-clamp:unset;line-clamp:unset}
-.status{text-align:center;padding:20px 8px;font-size:13px;color:#777060;line-height:2}
-.footer{text-align:center;margin-top:24px;font-size:12px;color:#8a806e;line-height:2}
+.card-stars{font-size:14px;color:#b18b43;margin-bottom:8px;line-height:1.8}
+.comment{font-size:12px;color:#5f5a4e;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;display:block;height:auto;max-height:none;overflow:visible;text-overflow:clip}
+.status{text-align:center;padding:18px 8px;font-size:13px;color:#777060;line-height:2}
+.footer{text-align:center;margin-top:15px;font-size:12px;color:#8a806e;line-height:2}
 .footer span{color:#a08040}
-@media(min-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}}
-@media(max-width:380px){#rufoof{padding:22px 7px}.overview{gap:7px}.panel{padding:13px 7px}.number{font-size:34px}.stars{font-size:14px}.row{grid-template-columns:38px minmax(8px,1fr) 17px;gap:3px;font-size:9px}.grid{gap:8px}.card{padding:10px 8px}.name{font-size:11px}.comment{font-size:11px}.card-stars{font-size:11px}}
+.swipe-hint{text-align:center;color:#8a806e;font-size:11px;margin:0 0 8px}
+.swipe-hint span{color:#a08040;font-size:15px;padding:0 5px}
+
+@media(min-width:700px){
+  .card{flex-basis:40%;width:40%}
+}
+@media(min-width:1000px){
+  .card{flex-basis:31%;width:31%}
+}
+@media(max-width:380px){
+  #rufoof{padding:20px 7px}
+  .overview{gap:7px}
+  .panel{padding:13px 7px}
+  .number{font-size:34px}
+  .stars{font-size:14px}
+  .row{grid-template-columns:38px minmax(8px,1fr) 17px;gap:3px;font-size:9px}
+  .grid{gap:9px}
+  .card{flex-basis:88%;width:88%;padding:11px 9px}
+  .name{font-size:11px}
+  .comment{font-size:11px}
+}
 </style>
 </head>
 <body>
 <main id="rufoof">
   <header class="heading">
-    <div class="kicker">RUFOOF · آراء عملائنا</div>
+    <div class="kicker">RUFOOF REVIEWS</div>
     <h2>ثقتكم هي أجمل شهادة</h2>
     <p class="subtitle">آراء وتجارب عملائنا مع رُفوف، نعتز بكل كلمة منكم.</p>
   </header>
@@ -68,7 +116,12 @@ h3{font-size:19px;margin:0}
     <h3>ماذا قال عملاؤنا؟</h3>
     <div class="latest">الأحدث أولًا</div>
   </div>
-  <section class="grid" id="reviews"></section>
+
+  <p class="swipe-hint">اسحب لاستكشاف آراء العملاء <span>←</span><span>→</span></p>
+  <section class="reviews-wrap">
+    <div class="grid" id="reviews"></div>
+  </section>
+
   <div class="status" id="status"></div>
   <div class="footer"><span>✦</span> شكرًا لثقتكم في رُفوف <span>✦</span></div>
 </main>
@@ -131,6 +184,7 @@ h3{font-size:19px;margin:0}
   try{
     if(!window.firebase)throw new Error("Firebase unavailable");
     if(!firebase.apps.length)firebase.initializeApp(config);
+
     firebase.firestore().collection("reviews")
       .orderBy("createdAt","desc")
       .onSnapshot(function(snapshot){
@@ -166,8 +220,7 @@ h3{font-size:19px;margin:0}
         document.getElementById("status").textContent="";
       },function(error){
         document.getElementById("total").textContent="تعذر تحميل التقييمات";
-        document.getElementById("status").textContent=
-          "راجع إعدادات Firebase واتصال الإنترنت.";
+        document.getElementById("status").textContent="راجع إعدادات Firebase واتصال الإنترنت.";
         console.error(error);
       });
   }catch(error){

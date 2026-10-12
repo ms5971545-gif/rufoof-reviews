@@ -7,36 +7,38 @@
 <title>Rufoof Reviews</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f8f5ed;color:#263d2e;font-family:Tahoma,Arial,sans-serif}
-#rufoof{max-width:1150px;margin:auto;padding:22px 12px}
+html,body{margin:0;padding:0;width:100%;background:#f8f5ed;color:#263d2e;font-family:Tahoma,Arial,sans-serif}
+body{overflow-x:hidden}
+#rufoof{width:100%;max-width:1150px;margin:0 auto;padding:20px 12px 0}
 .heading{text-align:center;margin-bottom:22px}
-.kicker{color:#a08040;font-size:12px;font-weight:bold;margin-bottom:9px}
-h2{font-size:clamp(23px,4vw,32px);margin:0 0 10px;line-height:1.6}
-.subtitle{font-size:13px;color:#777060;line-height:2;margin:0}
-.overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:12px;margin-bottom:26px}
-.panel{background:#fff;border:1px solid #e8e0d1;border-radius:14px;padding:18px 12px;min-width:0}
+.kicker{color:#a08040;font-size:12px;font-weight:bold;margin-bottom:8px;letter-spacing:1px}
+h2{font-size:clamp(23px,4vw,32px);margin:0 0 8px;line-height:1.6}
+.subtitle{font-size:13px;color:#777060;line-height:1.9;margin:0}
+.overview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);gap:12px;margin-bottom:24px}
+.panel{background:#fff;border:1px solid #e8e0d1;border-radius:14px;padding:16px 12px;min-width:0}
 .score{text-align:center;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .label,.total{color:#777060;font-size:12px;line-height:1.9}
-.number{font-size:42px;font-weight:bold;line-height:1.4}
-.stars{color:#b18b43;font-size:17px;margin:5px 0}
-.dist-title{font-size:13px;font-weight:bold;margin-bottom:14px}
-.row{display:grid;grid-template-columns:42px minmax(10px,1fr) 20px;gap:5px;align-items:center;margin:12px 0;font-size:10px;color:#716b5e}
+.number{font-size:40px;font-weight:bold;line-height:1.4}
+.stars{color:#b18b43;font-size:17px;margin:4px 0}
+.dist-title{font-size:13px;font-weight:bold;margin-bottom:12px}
+.row{display:grid;grid-template-columns:42px minmax(10px,1fr) 20px;gap:5px;align-items:center;margin:10px 0;font-size:10px;color:#716b5e}
 .track{height:7px;background:#eee9df;border-radius:20px;overflow:hidden}
 .fill{height:100%;background:#b18b43;width:0}
 .count{text-align:left;direction:ltr}
-.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #e8e0d1}
-h3{font-size:19px;margin:0}
+.list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid #e8e0d1}
+h3{font-size:18px;margin:0}
 .latest{font-size:11px;color:#a08040;white-space:nowrap}
 
-/* شريط التقييمات الأفقي */
-.reviews-wrap{position:relative}
+/* التقييمات أفقية قابلة للسحب */
 .grid{
   display:flex;
   flex-flow:row nowrap;
+  align-items:stretch;
   gap:12px;
+  width:100%;
   overflow-x:auto;
   overflow-y:hidden;
-  padding:4px 2px 16px;
+  padding:3px 2px 14px;
   scroll-snap-type:x mandatory;
   scroll-behavior:smooth;
   -webkit-overflow-scrolling:touch;
@@ -52,40 +54,34 @@ h3{font-size:19px;margin:0}
   background:#fff;
   border:1px solid #e8e0d1;
   border-radius:13px;
-  padding:14px 12px;
-  height:auto;
+  padding:13px 12px;
   overflow-wrap:anywhere;
-  box-shadow:0 4px 14px rgba(38,61,46,.05);
+  box-shadow:0 3px 12px rgba(38,61,46,.05);
   scroll-snap-align:start;
 }
-.person{display:flex;align-items:center;gap:8px;margin-bottom:9px;min-width:0}
-.avatar{width:36px;height:36px;flex:0 0 36px;border-radius:50%;background:#263d2e;color:#f8f5ed;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold}
+.person{display:flex;align-items:center;gap:8px;margin-bottom:8px;min-width:0}
+.avatar{width:35px;height:35px;flex:0 0 35px;border-radius:50%;background:#263d2e;color:#f8f5ed;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:bold}
 .person-info{min-width:0}
 .name{font-size:12px;font-weight:bold;line-height:1.8;overflow-wrap:anywhere}
 .date{font-size:10px;color:#938b7b;line-height:1.8}
-.card-stars{font-size:14px;color:#b18b43;margin-bottom:8px;line-height:1.8}
-.comment{font-size:12px;color:#5f5a4e;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;display:block;height:auto;max-height:none;overflow:visible;text-overflow:clip}
-.status{text-align:center;padding:18px 8px;font-size:13px;color:#777060;line-height:2}
-.footer{text-align:center;margin-top:15px;font-size:12px;color:#8a806e;line-height:2}
+.card-stars{font-size:14px;color:#b18b43;margin-bottom:7px;line-height:1.8}
+.comment{font-size:12px;color:#5f5a4e;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;word-break:normal;display:block;height:auto;max-height:none;overflow:visible}
+.status{text-align:center;padding:12px 8px;font-size:13px;color:#777060;line-height:1.9}
+.footer{text-align:center;margin-top:8px;padding:0 0 2px;font-size:12px;color:#8a806e;line-height:1.8}
 .footer span{color:#a08040}
-.swipe-hint{text-align:center;color:#8a806e;font-size:11px;margin:0 0 8px}
-.swipe-hint span{color:#a08040;font-size:15px;padding:0 5px}
-
-@media(min-width:700px){
-  .card{flex-basis:40%;width:40%}
-}
-@media(min-width:1000px){
-  .card{flex-basis:31%;width:31%}
-}
-@media(max-width:380px){
-  #rufoof{padding:20px 7px}
-  .overview{gap:7px}
-  .panel{padding:13px 7px}
-  .number{font-size:34px}
+.swipe-hint{text-align:center;color:#8a806e;font-size:11px;margin:0 0 7px}
+.swipe-hint span{color:#a08040;padding:0 4px}
+@media(min-width:700px){.card{flex-basis:42%;width:42%}}
+@media(min-width:1000px){.card{flex-basis:31%;width:31%}}
+@media(max-width:480px){
+  #rufoof{padding:17px 9px 0}
+  .overview{gap:8px;margin-bottom:20px}
+  .panel{padding:13px 8px}
+  .number{font-size:33px}
   .stars{font-size:14px}
-  .row{grid-template-columns:38px minmax(8px,1fr) 17px;gap:3px;font-size:9px}
+  .row{grid-template-columns:37px minmax(8px,1fr) 17px;gap:3px;font-size:9px}
   .grid{gap:9px}
-  .card{flex-basis:88%;width:88%;padding:11px 9px}
+  .card{flex-basis:84%;width:84%;padding:11px 9px}
   .name{font-size:11px}
   .comment{font-size:11px}
 }
@@ -117,11 +113,8 @@ h3{font-size:19px;margin:0}
     <div class="latest">الأحدث أولًا</div>
   </div>
 
-  <p class="swipe-hint">اسحب لاستكشاف آراء العملاء <span>←</span><span>→</span></p>
-  <section class="reviews-wrap">
-    <div class="grid" id="reviews"></div>
-  </section>
-
+  <p class="swipe-hint">اسحب لاستكشاف الآراء <span>←</span><span>→</span></p>
+  <section class="grid" id="reviews"></section>
   <div class="status" id="status"></div>
   <div class="footer"><span>✦</span> شكرًا لثقتكم في رُفوف <span>✦</span></div>
 </main>
@@ -130,6 +123,26 @@ h3{font-size:19px;margin:0}
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 (function(){
+  function reportHeight(){
+    var root=document.getElementById("rufoof");
+    if(!root)return;
+    var height=Math.ceil(root.getBoundingClientRect().height);
+    parent.postMessage({type:"rufoof-resize",height:height},"*");
+  }
+
+  function scheduleHeight(){
+    requestAnimationFrame(reportHeight);
+    setTimeout(reportHeight,100);
+    setTimeout(reportHeight,350);
+  }
+
+  window.addEventListener("load",scheduleHeight);
+  window.addEventListener("resize",scheduleHeight);
+
+  if("ResizeObserver" in window){
+    new ResizeObserver(scheduleHeight).observe(document.getElementById("rufoof"));
+  }
+
   var config={
     apiKey:"AIzaSyDVigJ8j77CaBL_kecRhjof2eRwrjFhlC4",
     authDomain:"rufoof-5274f.firebaseapp.com",
@@ -206,6 +219,7 @@ h3{font-size:19px;margin:0}
           drawDistribution([]);
           document.getElementById("reviews").replaceChildren();
           document.getElementById("status").textContent="";
+          scheduleHeight();
           return;
         }
 
@@ -215,17 +229,21 @@ h3{font-size:19px;margin:0}
         document.getElementById("averageStars").textContent=
           "★".repeat(Math.round(avg))+"☆".repeat(5-Math.round(avg));
         document.getElementById("total").textContent=reviews.length+" تقييم منشور";
+
         drawDistribution(reviews);
         drawReviews(reviews);
         document.getElementById("status").textContent="";
+        scheduleHeight();
       },function(error){
         document.getElementById("total").textContent="تعذر تحميل التقييمات";
         document.getElementById("status").textContent="راجع إعدادات Firebase واتصال الإنترنت.";
+        scheduleHeight();
         console.error(error);
       });
   }catch(error){
     document.getElementById("total").textContent="تعذر تشغيل التقييمات";
     document.getElementById("status").textContent="تعذر تشغيل عرض الآراء.";
+    scheduleHeight();
     console.error(error);
   }
 })();

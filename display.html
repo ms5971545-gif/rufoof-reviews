@@ -1,684 +1,869 @@
-
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>آراء عملاء رُفوف</title>
-
+```html
 <style>
-* {
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap');
+
+#rf-newlook,
+#rf-newlook * {
   box-sizing: border-box;
 }
 
-html,
-body {
+#rf-newlook {
+  direction: rtl;
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden !important;
-  background: #f8f5ed;
-  color: #263d2e;
-  font-family: Tahoma, Arial, sans-serif;
-}
-
-body {
-  overscroll-behavior-x: none;
-}
-
-#rufoof {
-  display: block;
-  width: 100%;
-  max-width: 1150px;
-  min-width: 0;
-  margin: 0 auto;
-  padding: 20px 12px 12px;
   overflow: hidden;
-}
-
-/* الإحصائيات والعنوان ثابتان */
-.heading {
-  text-align: center;
-  margin: 0 0 22px;
-}
-
-.kicker {
-  color: #a08040;
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 1.5px;
-  margin-bottom: 8px;
-}
-
-h2 {
-  font-size: clamp(23px, 4vw, 30px);
-  margin: 0 0 8px;
-  line-height: 1.7;
-}
-
-.subtitle {
-  font-size: 13px;
-  color: #777060;
+  background: #f8f7f2;
+  color: #252f29;
+  font-family: 'Noto Kufi Arabic', sans-serif;
   line-height: 2;
-  margin: 0;
 }
 
-.overview {
-  display: grid;
-  grid-template-columns: minmax(0, .85fr) minmax(0, 1.35fr);
-  gap: 12px;
-  margin-bottom: 24px;
-  width: 100%;
-  min-width: 0;
+#rf-newlook .nl-hero {
+  width: 100vw;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  background: #dce6d8;
+  padding: 65px 22px 58px;
+  position: relative;
 }
 
-.panel {
-  background: #fff;
-  border: 1px solid #e8e0d1;
-  border-radius: 14px;
-  padding: 16px 12px;
-  min-width: 0;
-  overflow: hidden;
+#rf-newlook .nl-hero-inner {
+  max-width: 1050px;
+  margin: auto;
 }
 
-.score {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+#rf-newlook .nl-eyebrow {
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
+  color: #365b43;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  margin-bottom: 25px;
 }
 
-.label,
-.total {
-  color: #777060;
-  font-size: 12px;
-  line-height: 1.9;
-}
-
-.number {
-  font-size: 40px;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
-.stars {
-  direction: ltr;
-  color: #b18b43;
-  font-size: 17px;
-  margin: 5px 0;
-}
-
-.dist-title {
-  font-size: 13px;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.rating-row {
-  display: grid;
-  grid-template-columns: 38px minmax(0, 1fr) 20px;
-  gap: 5px;
-  align-items: center;
-  margin: 11px 0;
-  font-size: 10px;
-  color: #716b5e;
-}
-
-.track {
-  height: 7px;
-  background: #eee9df;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-.fill {
-  height: 100%;
-  background: #b18b43;
-  width: 0;
-  transition: width .25s ease;
-}
-
-.count {
-  text-align: left;
-  direction: ltr;
-}
-
-/* عنوان كل صف لا يتحرك مع الكروت */
-.review-row {
+#rf-newlook .nl-eyebrow:before {
+  content: "";
   display: block;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  margin: 0 0 22px;
-  overflow: hidden;
+  width: 28px;
+  height: 2px;
+  background: #a18349;
 }
 
-.list-heading {
+#rf-newlook .nl-hero h1 {
+  font-family: 'Amiri', serif;
+  color: #193d2c;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 1.35;
+  margin: 0;
+  max-width: 850px;
+  font-weight: 700;
+}
+
+#rf-newlook .nl-hero h1 span {
+  color: #9a7940;
+}
+
+#rf-newlook .nl-hero-description {
+  max-width: 720px;
+  color: #435449;
+  font-size: 14px;
+  line-height: 2.3;
+  margin: 24px 0 0;
+}
+
+#rf-newlook .nl-hero-bottom {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 37px;
+  padding-top: 23px;
+  border-top: 1px solid rgba(36, 76, 51, .2);
+}
+
+#rf-newlook .nl-hero-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #244a34;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+#rf-newlook .nl-stat-number {
+  font-family: 'Amiri', serif;
+  font-size: 31px;
+  font-weight: 700;
+  line-height: 1;
+  color: #9a7940;
+}
+
+#rf-newlook .nl-shell {
+  max-width: 1050px;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+}
+
+#rf-newlook .nl-section {
+  padding: 65px 0;
+}
+
+#rf-newlook .nl-section + .nl-section {
+  border-top: 1px solid #e3e1d7;
+}
+
+#rf-newlook .nl-section-heading {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 30px;
+}
+
+#rf-newlook .nl-section-index {
+  color: #a18349;
+  font-family: 'Amiri', serif;
+  font-size: 52px;
+  line-height: 1;
+  border-left: 1px solid #d8d3c5;
+  padding-left: 18px;
+}
+
+#rf-newlook .nl-section-heading h2 {
+  font-family: 'Amiri', serif;
+  color: #1c4430;
+  font-size: clamp(29px, 4vw, 42px);
+  line-height: 1.5;
+  margin: 0 0 7px;
+}
+
+#rf-newlook .nl-section-heading p {
+  color: #777b70;
+  font-size: 12px;
+  margin: 0;
+  line-height: 2;
+}
+
+#rf-newlook .nl-body-text {
+  max-width: 850px;
+  margin-right: auto;
+  color: #535d54;
+  font-size: 13px;
+  line-height: 2.5;
+}
+
+#rf-newlook .nl-body-text p {
+  margin: 0 0 15px;
+}
+
+#rf-newlook .nl-highlight {
+  color: #244a34;
+  font-weight: 700;
+}
+
+#rf-newlook .nl-books {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+#rf-newlook .nl-book {
+  position: relative;
+  background: #fffefa;
+  border: 1px solid #e6e3d8;
+  padding: 26px 25px 24px;
+  min-width: 0;
+  transition: border-color .2s ease;
+}
+
+#rf-newlook .nl-book:hover {
+  border-color: #9baf97;
+}
+
+#rf-newlook .nl-book-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e8e0d1;
-}
-
-.row-title {
-  font-size: 17px;
-  font-weight: bold;
-  color: #263d2e;
-  margin: 0;
-}
-
-.latest {
-  font-size: 10px;
-  color: #a08040;
-  white-space: nowrap;
-}
-
-/* الحركة الأفقية مسموحة هنا فقط */
-.grid {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
   gap: 12px;
-
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  margin: 0;
-  padding: 2px 1px 12px;
-
-  overflow-x: auto;
-  overflow-y: hidden;
-
-  direction: rtl;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  overscroll-behavior-y: auto;
-  touch-action: pan-x pan-y;
-  scroll-snap-type: x proximity;
-  scrollbar-width: thin;
-  scrollbar-color: #b18b43 #eee9df;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #ebe8de;
+  margin-bottom: 18px;
 }
 
-.grid::-webkit-scrollbar {
-  height: 5px;
+#rf-newlook .nl-book-number {
+  font-family: 'Amiri', serif;
+  color: #b7a16d;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
 }
 
-.grid::-webkit-scrollbar-track {
-  background: #eee9df;
-  border-radius: 10px;
-}
-
-.grid::-webkit-scrollbar-thumb {
-  background: #b18b43;
-  border-radius: 10px;
-}
-
-/* الكروت لا تنكمش ولا توسّع الصفحة */
-.card {
-  flex: 0 0 82%;
-  width: 82%;
-  max-width: 82%;
-  min-width: 0;
-  height: auto;
-  align-self: stretch;
-
-  background: #fff;
-  border: 1px solid #e8e0d1;
-  border-radius: 13px;
-  padding: 14px 12px;
-
-  overflow-wrap: anywhere;
-  word-break: normal;
-  box-shadow: 0 4px 14px rgba(38, 61, 46, .04);
-  scroll-snap-align: start;
-}
-
-.person {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 9px;
-  min-width: 0;
-}
-
-.avatar {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  border-radius: 50%;
-  background: #263d2e;
-  color: #f8f5ed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.person-info {
-  min-width: 0;
-  flex: 1;
-}
-
-.name {
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1.8;
-  overflow-wrap: anywhere;
-}
-
-.date {
+#rf-newlook .nl-book-category {
   font-size: 10px;
-  color: #938b7b;
-  line-height: 1.8;
+  color: #42634a;
+  background: #edf2e9;
+  padding: 5px 10px;
+  border-radius: 3px;
 }
 
-.card-stars {
-  direction: ltr;
-  text-align: right;
-  font-size: 14px;
-  color: #b18b43;
-  margin-bottom: 7px;
-  line-height: 1.8;
-  letter-spacing: 1px;
+#rf-newlook .nl-book h3 {
+  font-family: 'Amiri', serif;
+  color: #214732;
+  font-size: 25px;
+  line-height: 1.7;
+  margin: 0 0 12px;
 }
 
-.comment {
+#rf-newlook .nl-book p {
+  color: #5a625a;
   font-size: 12px;
-  color: #5f5a4e;
+  line-height: 2.35;
+  margin: 0;
+}
+
+#rf-newlook .nl-book-foot {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px dashed #dcd8ca;
+  color: #887344;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+#rf-newlook .nl-journey {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid #dcd8ca;
+  border-bottom: 1px solid #dcd8ca;
+}
+
+#rf-newlook .nl-journey-item {
+  padding: 23px 17px;
+  border-left: 1px solid #dcd8ca;
+}
+
+#rf-newlook .nl-journey-item:last-child {
+  border-left: 0;
+}
+
+#rf-newlook .nl-journey-item span {
+  display: block;
+  color: #a18349;
+  font-family: 'Amiri', serif;
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 11px;
+}
+
+#rf-newlook .nl-journey-item h3 {
+  font-size: 12px;
+  color: #214732;
   line-height: 2;
-  white-space: pre-wrap;
+  margin: 0 0 6px;
+}
+
+#rf-newlook .nl-journey-item p {
+  color: #70766c;
+  font-size: 10px;
+  line-height: 2;
+  margin: 0;
+}
+
+#rf-newlook .nl-audience {
+  background: #1d4230;
+  padding: 35px;
+  color: #fff;
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: 30px;
+  align-items: start;
+}
+
+#rf-newlook .nl-audience h2 {
+  font-family: 'Amiri', serif;
+  font-size: clamp(28px, 4vw, 40px);
+  color: #e5d2a3;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+#rf-newlook .nl-audience-intro {
+  color: #d9e1d8;
+  font-size: 12px;
+  line-height: 2.3;
+  margin: 0;
+}
+
+#rf-newlook .nl-audience-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#rf-newlook .nl-audience-list li {
+  color: #f4f2eb;
+  padding: 11px 24px 11px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .15);
+  position: relative;
+  font-size: 12px;
+  line-height: 2.1;
+}
+
+#rf-newlook .nl-audience-list li:last-child {
+  border-bottom: 0;
+}
+
+#rf-newlook .nl-audience-list li:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  background: #d7bd80;
+  transform: rotate(45deg);
+}
+
+#rf-newlook .nl-specs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#rf-newlook .nl-spec {
+  background: #efeee6;
+  padding: 20px;
+  border-top: 2px solid #b69a60;
+  min-width: 0;
+}
+
+#rf-newlook .nl-spec-label {
+  display: block;
+  color: #7b7e71;
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+#rf-newlook .nl-spec-value {
+  display: block;
+  color: #244a34;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 2;
   overflow-wrap: anywhere;
-  word-break: normal;
-
-  display: block;
-  height: auto;
-  max-height: none;
-  overflow: visible;
-  text-overflow: clip;
-  -webkit-line-clamp: unset;
 }
 
-.status {
-  width: 100%;
-  padding: 24px 10px;
-  text-align: center;
+#rf-newlook .nl-faq-list {
+  border-top: 1px solid #dfddd3;
+}
+
+#rf-newlook .nl-faq {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: 25px;
+  padding: 22px 0;
+  border-bottom: 1px solid #dfddd3;
+}
+
+#rf-newlook .nl-faq h3 {
+  color: #214732;
   font-size: 13px;
-  color: #777060;
   line-height: 2;
+  margin: 0;
 }
 
-.footer {
-  display: block;
-  width: 100%;
-  margin: 8px 0 0;
-  padding: 10px 8px 4px;
-  text-align: center;
+#rf-newlook .nl-faq p {
+  color: #5e665d;
   font-size: 12px;
-  color: #8a806e;
-  line-height: 2;
+  line-height: 2.3;
+  margin: 0;
 }
 
-.footer span {
-  color: #a08040;
-  font-weight: bold;
+#rf-newlook .nl-final {
+  width: 100vw;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+  background: #252f29;
+  color: #f9f7ef;
+  padding: 55px 22px;
 }
 
-@media (min-width: 700px) {
-  .card {
-    flex-basis: 42%;
-    width: 42%;
-    max-width: 42%;
-  }
+#rf-newlook .nl-final-inner {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 35px;
+  align-items: center;
 }
 
-@media (min-width: 1000px) {
-  .card {
-    flex-basis: 31%;
-    width: 31%;
-    max-width: 31%;
-  }
+#rf-newlook .nl-final h2 {
+  font-family: 'Amiri', serif;
+  color: #e0c78f;
+  font-size: clamp(30px, 4.5vw, 47px);
+  line-height: 1.5;
+  margin: 0;
 }
 
-@media (max-width: 380px) {
-  #rufoof {
-    padding: 16px 8px 10px;
+#rf-newlook .nl-final p {
+  color: #e0e3db;
+  font-size: 12px;
+  line-height: 2.5;
+  margin: 0;
+}
+
+@media (max-width: 700px) {
+  #rf-newlook .nl-hero {
+    padding: 45px 20px 38px;
   }
 
-  .overview {
-    gap: 7px;
+  #rf-newlook .nl-hero-description {
+    font-size: 12px;
   }
 
-  .panel {
-    padding: 12px 7px;
+  #rf-newlook .nl-hero-bottom {
+    gap: 15px;
   }
 
-  .number {
-    font-size: 34px;
+  #rf-newlook .nl-hero-stat {
+    font-size: 10px;
   }
 
-  .stars {
-    font-size: 14px;
+  #rf-newlook .nl-stat-number {
+    font-size: 25px;
   }
 
-  .rating-row {
-    grid-template-columns: 34px minmax(0, 1fr) 17px;
-    gap: 3px;
-    font-size: 9px;
+  #rf-newlook .nl-shell {
+    width: calc(100% - 30px);
   }
 
-  .grid {
-    gap: 8px;
+  #rf-newlook .nl-section {
+    padding: 42px 0;
   }
 
-  .card {
-    flex-basis: 86%;
-    width: 86%;
-    max-width: 86%;
-    padding: 11px 9px;
+  #rf-newlook .nl-section-heading {
+    grid-template-columns: 57px minmax(0, 1fr);
+    gap: 13px;
+    margin-bottom: 23px;
   }
 
-  .name {
+  #rf-newlook .nl-section-index {
+    font-size: 39px;
+    padding-left: 10px;
+  }
+
+  #rf-newlook .nl-section-heading p {
+    font-size: 10px;
+  }
+
+  #rf-newlook .nl-body-text {
+    font-size: 12px;
+  }
+
+  #rf-newlook .nl-books {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  #rf-newlook .nl-book {
+    padding: 21px 19px;
+  }
+
+  #rf-newlook .nl-book h3 {
+    font-size: 23px;
+  }
+
+  #rf-newlook .nl-book p {
+    font-size: 12px;
+  }
+
+  #rf-newlook .nl-journey {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #rf-newlook .nl-journey-item {
+    padding: 18px 13px;
+    border-bottom: 1px solid #dcd8ca;
+  }
+
+  #rf-newlook .nl-journey-item:nth-child(2) {
+    border-left: 0;
+  }
+
+  #rf-newlook .nl-journey-item:nth-child(n+3) {
+    border-bottom: 0;
+  }
+
+  #rf-newlook .nl-audience {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 25px 20px;
+  }
+
+  #rf-newlook .nl-specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+  }
+
+  #rf-newlook .nl-spec {
+    padding: 15px 12px;
+  }
+
+  #rf-newlook .nl-spec-value {
     font-size: 11px;
   }
 
-  .comment {
-    font-size: 11px;
+  #rf-newlook .nl-faq {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 18px 0;
+  }
+
+  #rf-newlook .nl-final {
+    padding: 38px 20px;
+  }
+
+  #rf-newlook .nl-final-inner {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 }
 </style>
-</head>
 
-<body>
-<main id="rufoof">
+<div id="rf-newlook">
 
-  <header class="heading">
-    <div class="kicker">RUFOOF REVIEWS</div>
-    <h2>آراء عملائنا</h2>
-    <p class="subtitle">
-      تجاربكم وآراؤكم محل تقديرنا، وثقتكم هي الدافع لتقديم الأفضل.
-    </p>
-  </header>
+  <!-- افتتاحية تحريرية -->
+  <section class="nl-hero">
+    <div class="nl-hero-inner">
+      <div class="nl-eyebrow">منهج متكامل للتعلم والتربية</div>
 
-  <section class="overview">
-    <div class="panel score">
-      <div class="label">التقييم العام</div>
-      <div class="number" id="average">—</div>
-      <div class="stars" id="averageStars">☆☆☆☆☆</div>
-      <div class="total" id="totalReviews">جاري تحميل التقييمات...</div>
-    </div>
+      <h1>
+        حقيبة التأسيس<br>
+        <span>والبناء العلمي</span>
+      </h1>
 
-    <div class="panel">
-      <div class="dist-title">توزيع التقييمات</div>
-      <div id="ratingDistribution"></div>
-    </div>
-  </section>
+      <p class="nl-hero-description">
+        أربع محطات في رحلة واحدة؛ من اكتشاف الحروف وتأسيس القراءة العربية،
+        إلى تنمية الطلاقة القرائية، والانتفاع بالحديث الشريف،
+        والتعرف على الأخلاق والآداب الإسلامية.
+      </p>
 
-  <section class="review-row">
-    <div class="list-heading">
-      <h3 class="row-title">آراء عملائنا</h3>
-      <span class="latest">تجارب حقيقية</span>
-    </div>
-    <div class="grid" id="reviewsTop">
-      <div class="status">جاري تحميل الآراء...</div>
-    </div>
-  </section>
+      <div class="nl-hero-bottom">
+        <div class="nl-hero-stat">
+          <span class="nl-stat-number">04</span>
+          <span>كتب مختارة</span>
+        </div>
 
-  <section class="review-row">
-    <div class="list-heading">
-      <h3 class="row-title">المزيد من التجارب</h3>
-      <span class="latest">شكرًا لمشاركتكم</span>
-    </div>
-    <div class="grid" id="reviewsBottom">
-      <div class="status">جاري تحميل الآراء...</div>
+        <div class="nl-hero-stat">
+          <span class="nl-stat-number">01</span>
+          <span>رحلة تعليمية متكاملة</span>
+        </div>
+
+        <div class="nl-hero-stat">
+          <span class="nl-stat-number">03</span>
+          <span>مجالات معرفية وتربوية</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="footer">
-    <span>شكرًا لثقتكم في رُفوف</span>
+  <div class="nl-shell">
+
+    <!-- الفكرة -->
+    <section class="nl-section">
+      <div class="nl-section-heading">
+        <div class="nl-section-index">01</div>
+        <div>
+          <h2>التعلم يبدأ من الأساس</h2>
+          <p>عن الحقيبة وفكرتها التعليمية</p>
+        </div>
+      </div>
+
+      <div class="nl-body-text">
+        <p>
+          تجمع حقيبة التأسيس والبناء العلمي بين أربعة كتب تخدم جوانب مهمة
+          من رحلة التعلم؛ بداية من تأسيس مهارات القراءة العربية، مرورًا
+          بالتدريب على القراءة بطلاقة، وصولًا إلى الانتفاع بالحديث الشريف
+          والتعرف على الأخلاق والآداب الإسلامية.
+        </p>
+
+        <p>
+          تضم الحقيبة كتاب <span class="nl-highlight">حفظ الأبجدية العربية بمراحل الدرس الأربع</span>
+          لتعليم الحروف والتدرب على كتابتها وتمييزها، وكتاب
+          <span class="nl-highlight">القاعدة البغدادية لتعليم القراءة العربية</span>
+          لتأسيس المتعلم في القراءة والنطق الصحيح والتدرج في الحركات والمدود.
+        </p>
+
+        <p>
+          كما تضم كتاب <span class="nl-highlight">صحيح البخاري (طيب الله ثراه)</span>
+          للتدريب على القراءة بطلاقة من خلال أحاديث كتاب بدء الوحي،
+          وكتاب <span class="nl-highlight">الدروس الأولية في الأخلاق المرضية</span>
+          الذي يتناول الأخلاق والآداب وحقوق الله والوالدين والإخوان وآداب طلب العلم.
+        </p>
+      </div>
+    </section>
+
+    <!-- محتويات الحقيبة -->
+    <section class="nl-section">
+      <div class="nl-section-heading">
+        <div class="nl-section-index">02</div>
+        <div>
+          <h2>أربعة كتب، وأربعة أبعاد</h2>
+          <p>تعرّف على محتويات الحقيبة</p>
+        </div>
+      </div>
+
+      <div class="nl-books">
+
+        <article class="nl-book">
+          <div class="nl-book-top">
+            <span class="nl-book-number">01</span>
+            <span class="nl-book-category">تأسيس لغوي</span>
+          </div>
+
+          <h3>حفظ الأبجدية العربية بمراحل الدرس الأربع</h3>
+
+          <p>
+            يعتني بتعليم الحروف العربية والتدرب على كتابتها وتمييزها
+            من خلال مراحل الدرس الأربع، بما يساعد المتعلم على بناء
+            أساس أولي في معرفة الحروف والتعامل معها.
+          </p>
+
+          <div class="nl-book-foot">المجال: الحروف والكتابة</div>
+        </article>
+
+        <article class="nl-book">
+          <div class="nl-book-top">
+            <span class="nl-book-number">02</span>
+            <span class="nl-book-category">مهارات القراءة</span>
+          </div>
+
+          <h3>القاعدة البغدادية لتعليم القراءة العربية</h3>
+
+          <p>
+            يهدف إلى تأسيس المتعلم في القراءة العربية والنطق الصحيح،
+            والتدرج في تعلم الحركات والمدود وغيرها من مهارات القراءة،
+            وصولًا إلى بناء أساس قرائي أكثر ثباتًا.
+          </p>
+
+          <div class="nl-book-foot">المجال: القراءة والنطق</div>
+        </article>
+
+        <article class="nl-book">
+          <div class="nl-book-top">
+            <span class="nl-book-number">03</span>
+            <span class="nl-book-category">حديث شريف</span>
+          </div>
+
+          <h3>صحيح البخاري (طيب الله ثراه)</h3>
+
+          <p>
+            يُستخدم للتدريب على القراءة بطلاقة من خلال أحاديث كتاب بدء الوحي،
+            فيجمع بين ممارسة القراءة والتعامل مع نصوص من الحديث الشريف
+            ضمن مسار تعليمي يجمع المهارة والمعرفة.
+          </p>
+
+          <div class="nl-book-foot">المجال: الطلاقة القرائية والحديث</div>
+        </article>
+
+        <article class="nl-book">
+          <div class="nl-book-top">
+            <span class="nl-book-number">04</span>
+            <span class="nl-book-category">تربية وأخلاق</span>
+          </div>
+
+          <h3>الدروس الأولية في الأخلاق المرضية</h3>
+
+          <p>
+            يتناول الأخلاق والآداب وحقوق الله والوالدين والإخوان،
+            وآداب طلب العلم، بما يدعم التعرف على القيم الإسلامية
+            والاستفادة منها في التربية والتعليم.
+          </p>
+
+          <div class="nl-book-foot">المجال: الأخلاق والآداب الإسلامية</div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- مسار التعلم -->
+    <section class="nl-section">
+      <div class="nl-section-heading">
+        <div class="nl-section-index">03</div>
+        <div>
+          <h2>مسار تعليمي متدرج</h2>
+          <p>كيف تتكامل موضوعات الكتب داخل الحقيبة؟</p>
+        </div>
+      </div>
+
+      <div class="nl-journey">
+        <div class="nl-journey-item">
+          <span>01</span>
+          <h3>التعرف على الحروف</h3>
+          <p>تأسيس معرفة المتعلم بالأبجدية العربية وكتابتها وتمييزها.</p>
+        </div>
+
+        <div class="nl-journey-item">
+          <span>02</span>
+          <h3>بناء مهارة القراءة</h3>
+          <p>التدرج في الحركات والمدود والنطق والقراءة العربية.</p>
+        </div>
+
+        <div class="nl-journey-item">
+          <span>03</span>
+          <h3>تنمية الطلاقة</h3>
+          <p>التدرب على القراءة من خلال أحاديث كتاب بدء الوحي.</p>
+        </div>
+
+        <div class="nl-journey-item">
+          <span>04</span>
+          <h3>تعزيز القيم</h3>
+          <p>التعرف على الأخلاق والآداب وحقوق الله والوالدين والإخوان.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- الفئة المستهدفة -->
+    <section class="nl-section">
+      <div class="nl-audience">
+        <div>
+          <h2>لمن تناسب هذه الحقيبة؟</h2>
+          <p class="nl-audience-intro">
+            محتوى يجمع بين التعليم والتربية، ويمكن الاستفادة منه
+            في المنزل والبيئات التعليمية بحسب مستوى المتعلم وطريقة استخدام الكتب.
+          </p>
+        </div>
+
+        <ul class="nl-audience-list">
+          <li>الأطفال والمتعلمون المبتدئون.</li>
+          <li>أولياء الأمور الراغبون في دعم تعلم أبنائهم.</li>
+          <li>المعلمون والمربون في البيئات التعليمية والتربوية.</li>
+          <li>دور القرآن الكريم والمؤسسات التعليمية.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- البيانات الفنية -->
+    <section class="nl-section">
+      <div class="nl-section-heading">
+        <div class="nl-section-index">04</div>
+        <div>
+          <h2>بيانات الحقيبة</h2>
+          <p>البطاقة التعريفية والمعلومات الفنية</p>
+        </div>
+      </div>
+
+      <div class="nl-specs">
+        <div class="nl-spec">
+          <span class="nl-spec-label">اسم المنتج</span>
+          <span class="nl-spec-value">حقيبة التأسيس والبناء العلمي</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">عدد الكتب</span>
+          <span class="nl-spec-value">٤ كتب</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">اللغة</span>
+          <span class="nl-spec-value">العربية</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">الموضوع العام</span>
+          <span class="nl-spec-value">القراءة والحديث والأخلاق الإسلامية</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">الهدف</span>
+          <span class="nl-spec-value">تأسيس القراءة وتنمية الطلاقة وتعزيز التربية الإسلامية</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">التصنيف</span>
+          <span class="nl-spec-value">تعليم القراءة، الحديث الشريف، الأخلاق والتربية</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">أنواع الأغلفة</span>
+          <span class="nl-spec-value">بحسب مواصفات كل كتاب</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">المقاسات</span>
+          <span class="nl-spec-value">بحسب البيانات الفنية لكل كتاب</span>
+        </div>
+
+        <div class="nl-spec">
+          <span class="nl-spec-label">عدد الصفحات</span>
+          <span class="nl-spec-value">بحسب البيانات الفنية لكل كتاب</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- أسئلة شائعة -->
+    <section class="nl-section">
+      <div class="nl-section-heading">
+        <div class="nl-section-index">05</div>
+        <div>
+          <h2>أسئلة متكررة</h2>
+          <p>معلومات مختصرة قبل اختيار الحقيبة</p>
+        </div>
+      </div>
+
+      <div class="nl-faq-list">
+        <div class="nl-faq">
+          <h3>ما الكتب الموجودة داخل الحقيبة؟</h3>
+          <p>
+            حفظ الأبجدية العربية بمراحل الدرس الأربع، والقاعدة البغدادية
+            لتعليم القراءة العربية، وصحيح البخاري (طيب الله ثراه)،
+            والدروس الأولية في الأخلاق المرضية.
+          </p>
+        </div>
+
+        <div class="nl-faq">
+          <h3>هل تركز الحقيبة على القراءة فقط؟</h3>
+          <p>
+            لا، فهي تجمع بين تأسيس القراءة العربية وتنمية الطلاقة القرائية،
+            إلى جانب الحديث الشريف والأخلاق والآداب الإسلامية.
+          </p>
+        </div>
+
+        <div class="nl-faq">
+          <h3>هل تناسب الأطفال المبتدئين؟</h3>
+          <p>
+            تتضمن الحقيبة كتبًا لتأسيس الحروف والقراءة، ويمكن الاستفادة منها
+            مع المتعلمين المبتدئين مع مراعاة مستوى كل متعلم والإشراف التعليمي المناسب.
+          </p>
+        </div>
+
+        <div class="nl-faq">
+          <h3>هل تتوفر بيانات تفصيلية عن كل كتاب؟</h3>
+          <p>
+            تختلف أعداد الصفحات والمقاسات وأنواع الأغلفة بحسب كل كتاب،
+            وتُعتمد البيانات الفنية الخاصة بكل عنوان.
+          </p>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-</main>
+  <!-- الخاتمة -->
+  <section class="nl-final">
+    <div class="nl-final-inner">
+      <h2>نؤسس للعلم،<br>ونعتني ببناء الإنسان.</h2>
 
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+      <p>
+        حقيبة تجمع بين مهارات القراءة والمعرفة والتربية الإسلامية،
+        لتكون جزءًا من رحلة تعليمية متكاملة.
+        <br><br>
+        رُفوف — نختار ما ينفع، ونيسّر وصوله إليكم.
+      </p>
+    </div>
+  </section>
 
-<script>
-(function () {
-  "use strict";
-
-  var firebaseConfig = {
-    apiKey: "AIzaSyDVigJ8j77CaBL_kecRhjof2eRwrjFhlC4",
-    authDomain: "rufoof-5274f.firebaseapp.com",
-    projectId: "rufoof-5274f",
-    storageBucket: "rufoof-5274f.firebasestorage.app",
-    messagingSenderId: "649838866242",
-    appId: "1:649838866242:web:a2599e88269e7c656262db"
-  };
-
-  var topBox = document.getElementById("reviewsTop");
-  var bottomBox = document.getElementById("reviewsBottom");
-
-  function showStatus(box, message) {
-    box.innerHTML = "";
-    var status = document.createElement("div");
-    status.className = "status";
-    status.textContent = message;
-    box.appendChild(status);
-  }
-
-  function safeText(value) {
-    return value == null ? "" : String(value);
-  }
-
-  function formatDate(value) {
-    if (!value) return "";
-
-    var date = typeof value.toDate === "function"
-      ? value.toDate()
-      : new Date(value);
-
-    if (isNaN(date.getTime())) return "";
-
-    return new Intl.DateTimeFormat("ar-EG", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    }).format(date);
-  }
-
-  function makeStars(rating) {
-    var value = Math.max(0, Math.min(5, Number(rating) || 0));
-    var rounded = Math.round(value);
-    return "★".repeat(rounded) + "☆".repeat(5 - rounded);
-  }
-
-  function createCard(review) {
-    var card = document.createElement("article");
-    card.className = "card";
-
-    var person = document.createElement("div");
-    person.className = "person";
-
-    var avatar = document.createElement("div");
-    avatar.className = "avatar";
-
-    var name = safeText(review.name).trim() || "عميل رُفوف";
-    avatar.textContent = Array.from(name)[0] || "ر";
-
-    var info = document.createElement("div");
-    info.className = "person-info";
-
-    var nameElement = document.createElement("div");
-    nameElement.className = "name";
-    nameElement.textContent = name;
-
-    var date = document.createElement("div");
-    date.className = "date";
-    date.textContent = formatDate(review.createdAt);
-
-    info.appendChild(nameElement);
-    info.appendChild(date);
-    person.appendChild(avatar);
-    person.appendChild(info);
-
-    var stars = document.createElement("div");
-    stars.className = "card-stars";
-    stars.textContent = makeStars(review.rating);
-    stars.setAttribute(
-      "aria-label",
-      "التقييم " + Number(review.rating) + " من 5"
-    );
-
-    var comment = document.createElement("div");
-    comment.className = "comment";
-    comment.textContent = safeText(review.comment);
-
-    card.appendChild(person);
-    card.appendChild(stars);
-    card.appendChild(comment);
-
-    return card;
-  }
-
-  function renderDistribution(reviews) {
-    var container = document.getElementById("ratingDistribution");
-    container.innerHTML = "";
-
-    for (var rating = 5; rating >= 1; rating--) {
-      var count = reviews.filter(function (review) {
-        return Number(review.rating) === rating;
-      }).length;
-
-      var percentage = reviews.length
-        ? (count / reviews.length) * 100
-        : 0;
-
-      var row = document.createElement("div");
-      row.className = "rating-row";
-
-      var label = document.createElement("div");
-      label.textContent = rating + " نجوم";
-
-      var track = document.createElement("div");
-      track.className = "track";
-
-      var fill = document.createElement("div");
-      fill.className = "fill";
-      fill.style.width = percentage + "%";
-      track.appendChild(fill);
-
-      var countElement = document.createElement("div");
-      countElement.className = "count";
-      countElement.textContent = String(count);
-
-      row.appendChild(label);
-      row.appendChild(track);
-      row.appendChild(countElement);
-      container.appendChild(row);
-    }
-  }
-
-  function renderReviews(reviews) {
-    topBox.innerHTML = "";
-    bottomBox.innerHTML = "";
-
-    if (!reviews.length) {
-      showStatus(topBox, "لا توجد تقييمات منشورة حتى الآن.");
-      showStatus(bottomBox, "كن أول من يشارك تجربته مع رُفوف.");
-      return;
-    }
-
-    reviews.forEach(function (review, index) {
-      var card = createCard(review);
-
-      if (index % 2 === 0) {
-        topBox.appendChild(card);
-      } else {
-        bottomBox.appendChild(card);
-      }
-    });
-
-    if (!bottomBox.children.length) {
-      showStatus(bottomBox, "ننتظر المزيد من تجاربكم مع رُفوف.");
-    }
-  }
-
-  function renderSummary(reviews) {
-    var total = reviews.length;
-
-    var average = total
-      ? reviews.reduce(function (sum, review) {
-          return sum + Number(review.rating);
-        }, 0) / total
-      : 0;
-
-    document.getElementById("average").textContent =
-      total ? average.toFixed(1) : "—";
-
-    document.getElementById("averageStars").textContent =
-      total ? makeStars(average) : "☆☆☆☆☆";
-
-    document.getElementById("totalReviews").textContent =
-      total + (total === 1 ? " تقييم" : " تقييمات");
-
-    renderDistribution(reviews);
-  }
-
-  try {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
-
-    var db = firebase.firestore();
-
-    db.collection("reviews")
-      .orderBy("createdAt", "desc")
-      .get()
-      .then(function (snapshot) {
-        var reviews = [];
-
-        snapshot.forEach(function (doc) {
-          var data = doc.data();
-
-          if (
-            data &&
-            typeof data.name === "string" &&
-            typeof data.comment === "string" &&
-            Number(data.rating) >= 1 &&
-            Number(data.rating) <= 5 &&
-            data.comment.trim().length > 0
-          ) {
-            reviews.push(data);
-          }
-        });
-
-        renderSummary(reviews);
-        renderReviews(reviews);
-      })
-      .catch(function (error) {
-        console.error("Rufoof reviews loading error:", error);
-        showStatus(topBox, "تعذر تحميل التقييمات. حاول تحديث الصفحة.");
-        showStatus(bottomBox, "نعتذر عن الإزعاج، حاول مرة أخرى لاحقًا.");
-        document.getElementById("totalReviews").textContent =
-          "تعذر تحميل التقييمات";
-      });
-
-  } catch (error) {
-    console.error("Firebase initialization error:", error);
-    showStatus(topBox, "تعذر الاتصال بنظام التقييمات.");
-    showStatus(bottomBox, "يرجى المحاولة مرة أخرى لاحقًا.");
-  }
-})();
-</script>
-
-</body>
-</html>
+</div>
+```
